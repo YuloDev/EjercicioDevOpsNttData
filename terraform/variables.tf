@@ -1,29 +1,31 @@
 variable "region" {
-  description = "La región de AWS"
-  default     = "us-east-1"
+  description = "region"
+  sensitive   = true
 }
 
-variable "vpc_cidr_block" {
+variable "access_key" {
+  description = "access_key"
+  type        = string
+  sensitive   = true
+}
+
+variable "secret_key" {
+  description = "secret_key"
+  type        = string
+  sensitive   = true
+}
+
+variable "vpc_cidr" {
   description = "El bloque CIDR para la VPC"
   default     = "10.0.0.0/16"
 }
 
-variable "subnet_cidr_block" {
-  description = "El bloque CIDR para la subred pública"
+variable "subnet_cidr1" {
+  description = "El bloque CIDR para la primera subred pública"
   default     = "10.0.1.0/24"
 }
 
-variable "ecs_cpu" {
-  description = "La cantidad de CPU para la tarea ECS"
-  default     = "256"
-}
-
-variable "ecs_memory" {
-  description = "La cantidad de memoria para la tarea ECS"
-  default     = "512"
-}
-
-variable "image_tag" {
-  description = "La etiqueta de la imagen Docker en ECR"
-  default     = "latest"
+variable "subnet_cidr2" {
+  description = "El bloque CIDR para la segunda subred pública"
+  default     = "10.0.2.0/24"
 }
