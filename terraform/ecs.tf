@@ -22,8 +22,17 @@ resource "aws_ecs_task_definition" "task" {
       hostPort      = 80
       protocol      = "tcp"
     }]
+    logConfiguration = {
+      logDriver = "awslogs"
+      options = {
+        awslogs-group         = "/aws/ecs/tarea"
+        awslogs-region        = var.region
+        awslogs-stream-prefix = "ecs"
+      }
+    }
   }])
 }
+
 
 resource "aws_ecs_service" "servicio" {
   name            = "servicio-nodejs"
