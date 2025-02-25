@@ -1,7 +1,7 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const app = express();
-const PORT = process.env.PORT || 80;
+const PORT = process.env.PORT || 8080;
 const API_KEY = '2f5ae96c-b558-4c7b-a590-a501ae1c3f6c';
 const JWT_SECRET = 'supersecretkey';
 const token = jwt.sign({ to: 'Juan', from: 'Maria', timestamp: Date.now() }, JWT_SECRET, { expiresIn: '1h' });
