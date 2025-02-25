@@ -1,0 +1,17 @@
+node_modules/
+
+logs/
+*.log
+
+.env
+
+package-lock.json
+yarn.lock
+
+coverage/
+
+tmp/
+*.tmp
+
+.DS_Store
+Thumbs.db
