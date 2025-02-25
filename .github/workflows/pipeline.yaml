@@ -3,6 +3,9 @@ name: Prueba técnica NttData
 on:
   push:
     branches: [ master ]
+permissions:
+  id-token: write
+  contents: read
 
 jobs:
   deploy:
