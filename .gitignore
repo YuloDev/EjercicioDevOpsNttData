@@ -17,8 +17,8 @@ tmp/
 Thumbs.db
 
 .terraform/
-*.tfstate
-*.tfstate.*
+# *.tfstate
+# *.tfstate.*
 crash.log
 override.tf
 override.tf.json
