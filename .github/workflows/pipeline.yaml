@@ -2,7 +2,7 @@ name: Prueba técnica NttData
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
 
 jobs:
   deploy:
