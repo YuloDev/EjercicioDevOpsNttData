@@ -3,8 +3,8 @@ resource "aws_security_group" "alb_sg" {
   vpc_id = aws_vpc.main.id
 
   ingress {
-    from_port   = 80
-    to_port     = 80
+    from_port   = 443
+    to_port     = 443
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -18,8 +18,9 @@ resource "aws_security_group" "alb_sg" {
 }
 
 
+
 resource "aws_lb" "alb" {
-  name               = "mi-alb"
+  name               = "prueba-alb"
   load_balancer_type = "application"
   security_groups    = [aws_security_group.alb_sg.id]
   subnets            = [aws_subnet.public1.id, aws_subnet.public2.id]
@@ -56,3 +57,19 @@ resource "aws_lb_listener" "alb_listener" {
     target_group_arn = aws_lb_target_group.ecs_tg.arn
   }
 }
+
+
+resource "aws_lb_listener" "alb_listener_https" {
+  load_balancer_arn = aws_lb.alb.arn
+  port              = "443"
+  protocol          = "HTTPS"
+
+  ssl_policy        = "ELBSecurityPolicy-2016-08"
+  certificate_arn   = null  
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.ecs_tg.arn
+  }
+}
+
