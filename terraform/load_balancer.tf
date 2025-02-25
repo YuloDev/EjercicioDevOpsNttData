@@ -18,7 +18,6 @@ resource "aws_security_group" "alb_sg" {
 }
 
 
-
 resource "aws_lb" "alb" {
   name               = "prueba-alb"
   load_balancer_type = "application"
@@ -46,7 +45,6 @@ resource "aws_lb_target_group" "ecs_tg" {
 }
 
 
-
 resource "aws_lb_listener" "alb_listener" {
   load_balancer_arn = aws_lb.alb.arn
   port              = "80"
@@ -57,8 +55,6 @@ resource "aws_lb_listener" "alb_listener" {
     target_group_arn = aws_lb_target_group.ecs_tg.arn
   }
 }
-
-
 
 
 
