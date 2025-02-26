@@ -4,7 +4,7 @@ const app = express();
 const API_KEY = '2f5ae96c-b558-4c7b-a590-a501ae1c3f6c';
 const JWT_SECRET = 'supersecretkey';
 const PORT = process.env.PORT || 8080;
-const token = jwt.sign({ to: 'Juan', from: 'Maria', timestamp: Date.now() }, JWT_SECRET);
+const token = jwt.sign({ to: 'Juan', from: 'Maria'}, JWT_SECRET);
 app.use(express.json());
 
 app.post('/DevOps', (req, res, next) => {
