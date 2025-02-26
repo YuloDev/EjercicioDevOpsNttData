@@ -44,6 +44,10 @@ app.all('/DevOps', (req, res) => {
     res.status(405).send('ERROR');
 });
 
+app.all('/', (req, res) => {
+    res.status(405).send('ERROR');
+});
+
 
 const server = app.listen(PORT, () => {
     console.log(`Servidor corriendo en el puerto ${PORT}`);
