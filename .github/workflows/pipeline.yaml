@@ -8,6 +8,7 @@ permissions:
   contents: read
 
 jobs:
+
   deploy:
     name: Build
     runs-on: ubuntu-latest
@@ -58,3 +59,24 @@ jobs:
       working-directory: app
       run: |
         docker push ${{secrets.AWS_ACCOUNT_ID}}.dkr.ecr.${{secrets.AWS_REGION}}.amazonaws.com/prueba-repository:latest      
+
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+      
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+      
+    - name: Install Dependencies
+      working-directory: app
+      run: npm install
+      
+    - name: Run Tests
+      working-directory: app
+      run: npm run test  

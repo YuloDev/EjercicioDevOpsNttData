@@ -1,15 +1,13 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const app = express();
-const PORT = process.env.PORT || 8080;
 const API_KEY = '2f5ae96c-b558-4c7b-a590-a501ae1c3f6c';
 const JWT_SECRET = 'supersecretkey';
-const token = jwt.sign({ to: 'Juan', from: 'Maria', timestamp: Date.now() }, JWT_SECRET, { expiresIn: '1h' });
-
-console.log(token);
+const PORT = process.env.PORT || 8080;
+const token = jwt.sign({ to: 'Juan', from: 'Maria', timestamp: Date.now() }, JWT_SECRET);
 app.use(express.json());
 
-app.use((req, res, next) => {
+app.post('/DevOps', (req, res, next) => {
     const apiKey = req.header('X-Parse-REST-API-Key');
     const token = req.header('X-JWT-KWY');
 
@@ -46,6 +44,10 @@ app.all('/DevOps', (req, res) => {
     res.status(405).send('ERROR');
 });
 
-app.listen(PORT, () => {
+
+const server = app.listen(PORT, () => {
     console.log(`Servidor corriendo en el puerto ${PORT}`);
+    console.log(`jwt ${token}`);
 });
+
+module.exports = server;

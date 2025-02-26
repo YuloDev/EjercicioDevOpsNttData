@@ -15,12 +15,13 @@ resource "aws_ecs_task_definition" "task" {
   memory                   = "512"
   execution_role_arn       = aws_iam_role.ecs_execution_role.arn
 
+
   container_definitions = jsonencode([{
     name  = "nodejs-app"
-    image = "${aws_ecr_repository.prueba_repository.repository_url}:latest"
+    image = "${aws_ecr_repository.prueba_repository.repository_url}"
     portMappings = [{
-      containerPort = 80
-      hostPort      = 80
+      containerPort = 8080
+      hostPort      = 8080
       protocol      = "tcp"
     }]
 
@@ -40,10 +41,12 @@ resource "aws_ecs_service" "servicio" {
     subnets          = data.aws_subnets.selected.ids
     assign_public_ip = true
   }
+
   load_balancer {
     target_group_arn = aws_lb_target_group.ecs_tg.arn
     container_name   = "nodejs-app"
-    container_port   = 80
+    container_port   = 8080 
   }
 }
+
 
