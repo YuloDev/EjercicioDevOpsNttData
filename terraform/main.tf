@@ -4,3 +4,6 @@ provider "aws" {
   secret_key = var.secret_key
 }
 
+data "aws_vpc" "main" {
+  default = true
+}
