@@ -20,8 +20,8 @@ resource "aws_lb_target_group" "ecs_tg" {
     path                = "/health"
     interval            = 30
     timeout             = 10
-    healthy_threshold   = 3
-    unhealthy_threshold = 5
+    healthy_threshold   = 2
+    unhealthy_threshold = 10
     matcher             = "200"
   }
 
