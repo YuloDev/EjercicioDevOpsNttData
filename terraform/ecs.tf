@@ -31,9 +31,17 @@ resource "aws_ecs_service" "servicio" {
   desired_count   = 1
   launch_type     = "FARGATE"
 
+  load_balancer {
+    target_group_arn = aws_lb_target_group.ecs_tg.arn
+    container_name   = "nodejs-app"      
+    container_port   = 8080              
+  }
+
   network_configuration {
     subnets         = data.aws_subnets.selected.ids
     security_groups = [aws_security_group.ecs_app_sg.id]
     assign_public_ip = true
   }
+
+  depends_on = [aws_lb_listener.alb_listener]
 }
